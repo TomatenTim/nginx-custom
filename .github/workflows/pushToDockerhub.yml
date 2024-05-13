@@ -22,6 +22,6 @@ jobs:
       - name: build and push image to dockerhub
         uses: docker/build-push-action@v5
         with:
-          context: /
+          context: .
           push: true
           tags: tomatentim/nginx-custom:latest
