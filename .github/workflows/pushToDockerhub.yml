@@ -19,7 +19,7 @@ jobs:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
-      - name: build and push image to dockerhub
+      - name: get versions of modules
         id: version
         run: ./getVersions.sh
 
