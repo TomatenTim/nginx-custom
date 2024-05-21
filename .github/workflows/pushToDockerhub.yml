@@ -8,7 +8,7 @@ on:
 jobs:
   push_to_dockerhub:
     name: push docker image to hub
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
       - name: check repository
         uses: actions/checkout@v4
