@@ -1,5 +1,7 @@
 
 ARG NGINX_VERSION=1.25.5
+ARG RTMP_MODULE_VERSION=master
+# TODO: set version of NJS
 
 FROM nginx:${NGINX_VERSION} as build
 
@@ -33,6 +35,7 @@ WORKDIR /src
 # Download Modules that need to be build
 # Download nginx-rtmp-module
 RUN git clone https://github.com/arut/nginx-rtmp-module.git
+RUN git -C ./nginx-rtmp-module checkout ${RTMP_MODULE_VERSION}
 
 # Build nginx modules
 WORKDIR /usr/src/nginx-${NGINX_VERSION}

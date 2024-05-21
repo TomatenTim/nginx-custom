@@ -8,7 +8,7 @@ on:
 jobs:
   push_to_dockerhub:
     name: push docker image to hub
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     steps:
       - name: check repository
         uses: actions/checkout@v4
@@ -20,8 +20,18 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
       - name: build and push image to dockerhub
+        id: version
+        run: ./getVersions.sh
+
+      - name: build and push image to dockerhub
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: tomatentim/nginx-custom:latest
+          tags: |
+            ${{secrets.DOCKERHUB_USERNAME}}:latest
+            ${{secrets.DOCKERHUB_USERNAME}}/${{ steps.version.outputs.DOCKER_TAG }}
+          build-args: |
+            NGINX_VERSION=${{ steps.version.outputs.NGINX_VERSION }}
+            RTMP_MODULE_VERSION=${{ steps.version.outputs.RTMP_MODULE_VERSION }}
+    
