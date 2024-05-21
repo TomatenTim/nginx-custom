@@ -33,7 +33,7 @@ jobs:
           push: true
           tags: |
             ${{secrets.DOCKERHUB_USERNAME}}:latest
-            ${{secrets.DOCKERHUB_USERNAME}}/${{ steps.version.outputs.DOCKER_TAG }}
+            ${{secrets.DOCKERHUB_USERNAME}}:${{ steps.version.outputs.DOCKER_TAG }}
           build-args: |
             NGINX_VERSION=${{ steps.version.outputs.NGINX_VERSION }}
             RTMP_MODULE_VERSION=${{ steps.version.outputs.RTMP_MODULE_VERSION }}
