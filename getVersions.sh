@@ -30,7 +30,7 @@ echo "RTMP Module Hash:  $rtmp_module_commit_hash_short ($rtmp_module_commit_has
 
 echo "DOCKER_TAG:        $dockertag"
 
-echo "DOCKER_TAG=test" >> "$GITHUB_OUTPUT"
+echo "DOCKER_TAG=$dockertag" >> "$GITHUB_OUTPUT"
 echo "NGINX_VERSION=$nginx_version" >> "$GITHUB_OUTPUT"
 echo "RTMP_MODULE_VERSION=$rtmp_module_commit_hash" >> "$GITHUB_OUTPUT"
 
