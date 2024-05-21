@@ -1,20 +1,20 @@
 
-# echo ""
-# echo "Getting commit hash of tomatentim/nginx-custom"
+echo ""
+echo "Getting commit hash of tomatentim/nginx-custom"
 repo_commit_hash=$(git log -1 --pretty=format:"%H")
 repo_commit_hash_short=$(echo "$repo_commit_hash" | cut -c -7)
 
-# echo ""
-# echo "Pulling nginx:latest"
-# docker pull nginx:latest
+echo ""
+echo "Pulling nginx:latest"
+docker pull nginx:latest
 
 # Get version of NGINX
 nginx_config_string=$(docker image inspect nginx:latest --format '{{ .Config.Env }}')
 nginx_version=$(echo "$nginx_config_string" | grep -oP 'NGINX_VERSION=\K[^\s]*')
 
 
-# echo ""
-# echo "Getting commit hash of arut/nginx-rtmp-module"
+echo ""
+echo "Getting commit hash of arut/nginx-rtmp-module"
 rtmp_module_response=$(git ls-remote https://github.com/arut/nginx-rtmp-module.git refs/heads/master)
 rtmp_module_commit_hash=$(echo "$rtmp_module_response" | cut -d $'\t' -f 1)
 rtmp_module_commit_hash_short=$(echo "$rtmp_module_commit_hash" | cut -c -7)
@@ -22,16 +22,15 @@ rtmp_module_commit_hash_short=$(echo "$rtmp_module_commit_hash" | cut -c -7)
 
 dockertag="$repo_commit_hash_short--nginx-$nginx_version--rtmp-$rtmp_module_commit_hash_short"
 
-# echo ""
-# echo "REPO Hash:         $repo_commit_hash_short ($repo_commit_hash)"
-# echo "NGINX Version:     $nginx_version"
-# echo "RTMP Module Hash:  $rtmp_module_commit_hash_short ($rtmp_module_commit_hash)"
 
-# echo "DOCKER_TAG:        $dockertag"
+echo ""
+echo "REPO Hash:         $repo_commit_hash_short ($repo_commit_hash)"
+echo "NGINX Version:     $nginx_version"
+echo "RTMP Module Hash:  $rtmp_module_commit_hash_short ($rtmp_module_commit_hash)"
 
-echo "{DOCKER_TAG}={$dockertag}"
-echo "{NGINX_VERSION}={$nginx_version}"
-echo "{RTMP_MODULE_VERSION}={$rtmp_module_commit_hash}"
+echo "DOCKER_TAG:        $dockertag"
+
+
 
 # echo ""
 # echo "Building Docker image"

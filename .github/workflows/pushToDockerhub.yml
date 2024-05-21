@@ -24,7 +24,11 @@ jobs:
 
       - name: Get versions of modules
         id: version
-        run: echo $(./getVersions.sh) >> "$GITHUB_OUTPUT"
+        run: |
+          ./getVersions.sh
+          echo "{DOCKER_TAG}={$dockertag}" >> "$GITHUB_OUTPUT"
+          echo "{NGINX_VERSION}={$nginx_version}" >> "$GITHUB_OUTPUT"
+          echo "{RTMP_MODULE_VERSION}={$rtmp_module_commit_hash}" >> "$GITHUB_OUTPUT"
 
       - name: build and push image to dockerhub
         uses: docker/build-push-action@v5
