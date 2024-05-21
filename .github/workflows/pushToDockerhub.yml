@@ -24,7 +24,7 @@ jobs:
 
       - name: Get versions of modules
         id: version
-        run: ./getVersions.sh
+        run: ./getVersions.sh >> "$GITHUB_OUTPUT"
 
       - name: build and push image to dockerhub
         uses: docker/build-push-action@v5
