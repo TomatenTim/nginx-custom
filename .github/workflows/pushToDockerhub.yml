@@ -24,15 +24,7 @@ jobs:
 
       - name: Get versions of modules
         id: version
-        run: ./getVersions.sh >> "$GITHUB_OUTPUT"
-
-      - name: TEST Set color
-        id: color-selector
-        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
-      - name: TEST Get color
-        env:
-          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-        run: echo "The selected color is $SELECTED_COLOR"
+        run: echo $(./getVersions.sh) >> "$GITHUB_OUTPUT"
 
       - name: build and push image to dockerhub
         uses: docker/build-push-action@v5
