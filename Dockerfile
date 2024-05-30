@@ -45,6 +45,7 @@ RUN ./configure \
     --with-compat \
     --with-stream \
     --with-http_ssl_module \
+    --with-http_auth_request_module \
     --add-dynamic-module=/src/nginx-rtmp-module \
     ${NGINX_ARGS}
 RUN make modules
