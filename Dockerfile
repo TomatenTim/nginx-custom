@@ -59,8 +59,7 @@ FROM nginx:${NGINX_VERSION} as runner
 # Download modules
 RUN apt-get update
 RUN apt-get install -y \
-    nginx-module-njs \
-    ffmpeg
+    nginx-module-njs
 
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
